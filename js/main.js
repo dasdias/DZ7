@@ -36,7 +36,7 @@ function main () {
 	})
 		.then(answer => answer.json())
 		.then(data => {
-            console.log(data);
+            // console.log(data);
 			const rootDir = document.getElementById('listViewer')
 
 			for (const item of data) {
@@ -46,14 +46,14 @@ function main () {
 					.replace('%ID%', item.id)
 					.replace('%ID%', item.id)
 					.replace('%GOOD%', item.good)
-					.replace('%PRICE%', item.price / 100 + ' руб')
+					.replace('%PRICE%', new Intl.NumberFormat('ru-RU').format(item.price) + " руб")
 					.replace('%CLIENT_NAME%', item.clientName)
 
 				rootDir.append(tbodyElement.firstElementChild)
 			}
 		})
 }
-
+// console.log(new Intl.NumberFormat('ru-RU').format(number));
 // console.log(location);
 // Получить все заказы
 // GET /orders

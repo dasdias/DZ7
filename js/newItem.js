@@ -1,12 +1,6 @@
-// let orderId = document.getElementById('orderId')
-let userName = document.getElementById('userName')
-let select
-// let product = document.getElementById('inputGroupSelect01').value
-// let product = document.getElementById('inputGroupSelect01').options.selectedIndex
-// let select = document.getElementById('inputGroupSelect01').options[product].text
-let sum = document.getElementById('price')
-let button = document.getElementById('button')
-
+let userName = document.getElementById('userName');
+let select;
+let button = document.getElementById('button');
 
 
 document.getElementById('inputGroupSelect01').addEventListener('change', function () {
@@ -14,14 +8,15 @@ document.getElementById('inputGroupSelect01').addEventListener('change', functio
 	let product = document.getElementById('inputGroupSelect01').options.selectedIndex
 	let select = document.getElementById('inputGroupSelect01').options[product].text
 // 
-	function newItem () {
+	function newItem (sum) {
 		const url = 'http://89.108.64.67:3000'
 		const key = '?key=asdkjf943qf987a98d7f8974'
 		const address = '/order'
+		let delSpace = sum.value.replace(/\s/g, '').trim()
 
 		const newOrder = JSON.stringify({
 			good: ` ${select}`,
-			price: `${price.value * 100}`,
+			price: `${parseInt(delSpace)}`,
 			clientName:  `${userName.value}`,
 			managerName: "Анастасия",
 			paymentStatus: 0,
@@ -38,9 +33,10 @@ document.getElementById('inputGroupSelect01').addEventListener('change', functio
 			// })
 	}
 	button.addEventListener('click', function() {
-		newItem()
-		// alert('Изменения сохранены.')
-		window.location.replace(document.referrer).reload();
+		let sum = document.getElementById('price')
+
+		newItem(sum)
+		window.location.replace(document.referrer)
 	})
 
 })
